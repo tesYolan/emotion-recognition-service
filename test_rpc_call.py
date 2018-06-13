@@ -7,4 +7,4 @@ with open('turtles.png', 'rb') as f:
     image_64 = base64.b64encode(img).decode('utf-8')
 
 if __name__ == '__main__':
-    jsonrpcclient.request("http://127.0.0.1:{}".format(8000), "classify",image=image_64, image_type='png')
+    jsonrpcclient.request("http://127.0.0.1:{}".format(8001), "classify",image=image_64, image_type='png')

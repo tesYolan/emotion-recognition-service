@@ -15,6 +15,10 @@ source activate emotion-recogntion-snet-agent
 pip install -r requirements.txt
 python get_models.py
 ```
+### Using docker
+```
+docker build Dockerfile.gpu -t . singnet:emopy
+```
 ## How to preprocess datasets
 This proejct uses [CK+ dataset](http://www.consortium.ri.cmu.edu/ckagree/) and  [Kaggle fer2013 dataset](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data).  
 The dataset should be saved inside single directory which contains ```train``` and ```test``` folders.

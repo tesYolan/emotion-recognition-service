@@ -41,7 +41,7 @@ def start_snetd(cwd, daemon_config_path=None):
 
 
 def start_service(cwd):
-    return subprocess.Popen(["python", "script.py"])
+    return subprocess.Popen(["python3.6", "script.py"])
 
 
 if __name__ == "__main__":
