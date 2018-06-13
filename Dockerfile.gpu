@@ -28,4 +28,4 @@ COPY . /emotion-recognition-service
 
 WORKDIR /emotion-recognition-service
 
-CMD ['python3.6', 'run-snet-service.py']
+CMD ["python3.6", "run-snet-service.py"]

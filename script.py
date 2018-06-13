@@ -46,7 +46,7 @@ async def classify(**kwargs):
         tmp_file_name = 'tmp/tmp_' + str(random.randint(0,100000000000)) +'_.' + str(image_type)
     with open(tmp_file_name,'wb') as f:
         f.write(binary_image)
-    model.args.path = 'tmp.'+str(image_type)
+    model.args.path = tmp_file_name
     bounding_boxes, emotions = model.predict()
     return {"bounding boxes": str(bounding_boxes),"predictions": str(emotions)}
 async def handle(request):
