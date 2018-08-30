@@ -17,7 +17,7 @@ python get_models.py
 ```
 ### Using docker
 ```
-docker build Dockerfile.gpu -t . singnet:emopy
+docker build --file Dockerfile.gpu . -t singnet:emopy
 ```
 ## How to preprocess datasets
 This proejct uses [CK+ dataset](http://www.consortium.ri.cmu.edu/ckagree/) and  [Kaggle fer2013 dataset](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data).  
