@@ -19,7 +19,6 @@ dependencies:
     - tensorflow-gpu==1.8.0
     - tqdm
     - pip:
-        - snetd-alpha==0.1.0
         - jsonrpcserver==3.5.4
         - jsonrpcclient==2.5.2
         - aiohttp==3.2.1 

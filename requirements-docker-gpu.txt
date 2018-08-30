@@ -41,7 +41,6 @@ traitlets
 wcwidth
 webencodings
 Werkzeug
-snetd-alpha==0.1.0
 jsonrpcserver
 jsonrpcclient
 aiohttp

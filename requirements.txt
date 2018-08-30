@@ -46,12 +46,10 @@ six==1.11.0
 tensorboard==1.8.0
 tensorflow==1.8.0
 termcolor==1.1.0
-Theano==1.0.2
 traitlets==4.3.2
 wcwidth==0.1.7
 webencodings==0.5
 Werkzeug==0.14.1
-snetd-alpha==0.1.0
 jsonrpcserver==3.5.4
 jsonrpcclient==2.5.2
 aiohttp==3.2.1 
