@@ -1,5 +1,8 @@
 shape_predictor_68_face_landmarks.dat
+*.swp
 *.pyc
+*_pb2.py
+*_pb2_grpc.py
 logs/logs/*
 logs/models/*
 tmp/*
