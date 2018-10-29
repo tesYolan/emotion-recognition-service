@@ -13,8 +13,8 @@ import grpc
 import time
 from concurrent import futures
 from demo import load_model_from_args, start_image_demo
-from models.grpc.emotion_service_pb2 import RecognizeResponse, BoundingBox
-from models.grpc.emotion_service_pb2_grpc import EmotionRecognitionServicer, add_EmotionRecognitionServicer_to_server
+from service_spec.EmotionService_pb2 import RecognizeResponse, BoundingBox
+from service_spec.EmotionService_pb2_grpc import EmotionRecognitionServicer, add_EmotionRecognitionServicer_to_server
 
 
 class Args:
@@ -53,9 +53,10 @@ class EmotionRecognitionServicer(EmotionRecognitionServicer):
 
         response = RecognizeResponse()
 
-        values = [ dict(x=d.left(), y=d.top(), w=d.right() - d.left(), h=d.bottom() - d.top()) for d in bounding_boxes ]
-        response.bounding_boxes = values
-        response.predictions = emotions
+        for d in bounding_boxes:
+            response.bounding_boxes.add(x=d.left(), y=d.top(), w=d.right() - d.left(), h=d.bottom() - d.top())
+        # values = [ dict(x=d.left(), y=d.top(), w=d.right() - d.left(), h=d.bottom() - d.top()) for d in bounding_boxes ]
+        response.predictions[:] = emotions
 
         return response
     def _classify(self, image):

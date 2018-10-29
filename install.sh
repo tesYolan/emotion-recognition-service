@@ -1,4 +1,7 @@
 #!/bin/bash
+
+echo "The release isn't updated in over 2 month, DO NOT USE this."
+exit
 snet_daemon_v=0.1.0
 
 # apt install tar
@@ -15,3 +18,6 @@ else
 fi
 
 python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. models/grpc/emotion_service.proto
+
+pyhton3 -m pip install tqdm
+python3 get_models.py
