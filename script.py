@@ -5,10 +5,6 @@ import tempfile
 import json
 from multiprocessing import Pool
 
-from aiohttp import web
-from jsonrpcserver.aio import methods
-from jsonrpcserver.exceptions import InvalidParams
-
 import grpc
 import time
 from concurrent import futures
@@ -96,43 +92,5 @@ def serve():
     except KeyboardInterrupt:
         server.stop(0)
 
-
-# app = web.Application()
-
-
-# @methods.add
-# async def classify(**kwargs):
-#     image = kwargs.get("image", None)
-#     image_type = kwargs.get("image_type", None)
-#     if image is None:
-#         raise InvalidParams("image is required")
-#     if image_type is None:
-#         raise InvalidParams("image type is required")
-# 
-#     binary_image = base64.b64decode(image)
-# 
-#     with Pool(1) as p:
-#         bounding_boxes, emotions = p.apply(_classify, (binary_image,))
-# 
-#     return {
-#         "bounding boxes": [
-#             dict(x=d.left(), y=d.top(), w=d.right() - d.left(), h=d.bottom() - d.top()) for d in bounding_boxes
-#         ],
-#         "predictions": emotions
-#     }
-# 
-# 
-# async def handle(request):
-#     request = await request.text()
-#     response = await methods.dispatch(request, trim_log_values=True)
-# 
-#     if response.is_notification:
-#         return web.Response()
-#     else:
-#         return web.json_response(response, status=response.http_status)
-
-
 if __name__ == '__main__':
-    # app.router.add_post('/', handle)
-    # web.run_app(app, host="127.0.0.1", port=8001)
     serve()
