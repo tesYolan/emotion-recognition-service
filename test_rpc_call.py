@@ -11,7 +11,7 @@ with open('turtles.png', 'rb') as f:
 
 if __name__ == '__main__':
     # jsonrpcclient.request("http://127.0.0.1:{}".format(8001), "classify",image=image_64, image_type='png')
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel('localhost:8001') as channel:
         stub = EmotionRecognitionStub(channel)
         request = RecognizeRequest(image_type='png', image=image_64)
         feature = stub.classify(request)

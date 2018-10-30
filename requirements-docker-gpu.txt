@@ -6,7 +6,8 @@ certifi
 cycler
 decorator
 gast
-grpcio==1.11.0
+grpcio
+grpcio_tools
 h5py==2.7.1
 html5lib==0.9999999
 jedi

@@ -83,7 +83,7 @@ def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
     add_EmotionRecognitionServicer_to_server(EmotionRecognitionServicer(), server)
-    server.add_insecure_port('[::]:50051')
+    server.add_insecure_port('[::]:8001')
     server.start()
     _ONE_DAY = 60*60*24
     try: 

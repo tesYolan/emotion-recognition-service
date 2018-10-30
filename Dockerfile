@@ -31,4 +31,6 @@ WORKDIR /emotion-recognition-service
 # EXPOSES the port where jsonrpc is being heard.
 EXPOSE 8001
 
-CMD ['python3.6', 'run-snet-service.py']
+RUN python3.6 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. service_spec/EmotionService.proto
+
+CMD ['python3.6', 'run-snet-service.py', "--daemon-config", "snetd.json"]
