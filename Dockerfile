@@ -1,4 +1,4 @@
-FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
+FROM ubuntu:16.04
 
 RUN apt-get update
 RUN apt-get install -y software-properties-common
@@ -30,6 +30,7 @@ WORKDIR /emotion-recognition-service
 
 # EXPOSES the port where jsonrpc is being heard.
 EXPOSE 8001
+EXPOSE 6005
 
 RUN python3.6 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. service_spec/EmotionService.proto
 
