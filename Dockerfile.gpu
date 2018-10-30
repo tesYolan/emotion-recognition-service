@@ -29,7 +29,7 @@ COPY . /emotion-recognition-service
 WORKDIR /emotion-recognition-service
 
 EXPOSE 8001
-EXPOSE 6005
+EXPOSE 6205
 
 RUN python3.6 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. service_spec/EmotionService.proto
 
