@@ -33,7 +33,6 @@ prompt-toolkit==1.0.15
 protobuf==3.5.2
 ptyprocess==0.5.2
 Pygments==2.2.0
-pygpu==0.7.6
 pyparsing==2.2.0
 python-dateutil==2.7.3
 pytz==2018.4
@@ -54,4 +53,3 @@ jsonrpcserver==3.5.4
 jsonrpcclient==2.5.2
 aiohttp==3.2.1 
 opencv-python==3.4.1.15
-dlib==19.13.1
