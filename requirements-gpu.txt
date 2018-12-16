@@ -18,7 +18,6 @@ Mako
 Markdown==2.6.11
 MarkupSafe
 matplotlib
-networkx
 numpy
 opencv-python
 pexpect
@@ -39,11 +38,9 @@ simplegeneric
 six
 termcolor
 traitlets
+tqdm
 wcwidth
 webencodings
 Werkzeug
-jsonrpcserver
-jsonrpcclient
-aiohttp
 opencv-python
 dlib

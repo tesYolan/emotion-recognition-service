@@ -1,23 +1,27 @@
 #!/bin/bash
 
-echo "The release isn't updated in over 2 month, DO NOT USE this."
-exit
-snet_daemon_v=0.1.0
+snet_daemon_v=0.1.3
 
 # apt install tar
-if [ ! -f snetd-linux-amd64 ]; then
+if [ ! -d snetd-$snet_daemon_v ] ; then
 	echo "Downloading snetd-linux"
-	wget https://github.com/singnet/snet-daemon/releases/download/v0.1.0/snetd-$snet_daemon_v.tar.gz 
+	wget https://github.com/singnet/snet-daemon/releases/download/v$snet_daemon_v/snetd-$snet_daemon_v.tar.gz
 
-	tar -xvf snetd-$snet_daemon_v.tar.gz
+	y=`uname`
+	if [ $y == "Darwin" ]; then
+		echo "MacOS creates folder"
+		mkdir snetd-$snet_daemon_v
+	else
+		echo "Using linux, tar creates a folder by itself"
+	fi
+	tar -xzf snetd-$snet_daemon_v.tar.gz -C snetd-$snet_daemon_v
 
 	# May be should we define a cache.
 	rm snetd-$snet_daemon_v.tar.gz
 else
-	echo "File seems to exist"
+	echo "Folder seems to exist"
 fi
 
-python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. service_spec/EmotionService.proto
+python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. service_spec/EmotionService.proto
 
-pyhton3 -m pip install tqdm
-python3 get_models.py
+python get_models.py

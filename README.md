@@ -5,19 +5,36 @@ This project is aimed to train model that detects emotion from face image.
 ```
 # with conda
 conda env update
-python get_models.py
 # to activate environment
-source activate emotion-recogntion-snet-agent
+conda activate emotion-recogntion-snet-agent
 ```
 ### Using pip
 ```
 # to utilize pip
 pip install -r requirements.txt
-python get_models.py
 ```
-### Using docker
+Or if you have GPU
+```bash
+pip install -r requirement-gpu.txt
+```
+
+#### Getting the models
+After you have setted up the repository, one can get the models for landmark detection by invoking the following command
+Also the following script pulls in the [snet-daemon](https://github.com/singnet/snet-daemon/releases/tag/v0.1.3). 
+```bash
+# Download the snet daemon and dlib shapekey model. 
+./install.sh
+```
+### Using docker with GPU
+If you have a [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker.git) installed, we have Dockerfile.gpu which you
+can use to build your image. 
 ```
 docker build --file Dockerfile.gpu . -t singnet:emopy
+```
+### Using docker with CPU
+You can also build an image which has only the CPU dependecies to evaluate the models provided. 
+```bash
+docker build --file Dockerfile . -t singnet:emopy-cpu
 ```
 ## How to preprocess datasets
 This proejct uses [CK+ dataset](http://www.consortium.ri.cmu.edu/ckagree/) and  [Kaggle fer2013 dataset](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data).  
@@ -40,9 +57,6 @@ The four inputs model can be trained by three steps
 cd /path-to-project
 wget "http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2"
 bzip2 -d shape_predictor_68_face_landmarks.dat.bz2
-
-# or
-python get_models.py
 ```
 Training program can be run using the following command
 ```
@@ -81,14 +95,6 @@ Options for demo program are
 * -i : Face image source. This could be either `image`, `video` or `webcam`. Defualt is webcam.
 * -p : Path to source file. If options -i is webcam this is not necessary.
 
-## Requirements
-* keras >= 2.0
-* tensorflow >= 1.5
-* dlib
-* opencv >= 3.1
-* scikit-image
-* numpy 
-* pandas
 ### Using as singularitynet service
 Trained models are available to be run as services to provide emotional results for image currently. It's based on the (alpha-service-example)[https://github.com/singnet/alpha-service-example]. And thus most of the parts are similar. 
 ```

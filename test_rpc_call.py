@@ -1,18 +1,23 @@
-import jsonrpcclient
 import base64
-
 import grpc
-from service_spec.EmotionService_pb2_grpc import EmotionRecognitionStub
-from service_spec.EmotionService_pb2 import RecognizeResponse, BoundingBox, RecognizeRequest
 import subprocess
 import sys
 import argparse
 import time
 import yaml
 
+from service_spec.EmotionService_pb2_grpc import EmotionRecognitionStub
+from service_spec.EmotionService_pb2 import RecognizeResponse, BoundingBox, RecognizeRequest
+
 with open('turtles.png', 'rb') as f:
     img = f.read()
     image_64 = base64.b64encode(img).decode('utf-8')
+
+def load_image():
+    query = '{"image_type": "png", "image" : "' + str(image_64) + '"}'
+    with open('query.json', 'wt') as f:
+        f.write(str(query))
+
 
 def test_grpc_call(port):
     with grpc.insecure_channel('localhost:' + port) as channel:
@@ -22,11 +27,8 @@ def test_grpc_call(port):
          print(feature)
 
 def test_deployed_service(job_address):
-    query = '{"image_type": "png", "image" : "' + str(image_64) + '"}'
-    with open('query2.json', 'wt') as f:
-        f.write(str(query))
-
-    p = subprocess.Popen(["snet", "--print-traceback", "client", "call", "--agent-at", "0x7fE17B093E13379247336DDD846deF8624Ae8a9C", "--job-at", job_address, "classify", query,"-y"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p = subprocess.Popen(["snet", "--print-traceback", "client", "call", "--agent-at", "0x7fE17B093E13379247336DDD846deF8624Ae8a9C",
+                          "--job-at", job_address, "classify", "query.json","-y"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     result, err = p.communicate()
     print(result)
@@ -38,11 +40,8 @@ def test_deployed_service(job_address):
     return preprocessed_results
 
 def test_deployed_service(job_address):
-    query = '{"image_type": "png", "image" : "' + str(image_64) + '"}'
-    with open('query2.json', 'wt') as f:
-        f.write(str(query))
-
-    p = subprocess.Popen(["snet", "--print-traceback", "client", "call", "--agent-at", "0x7fE17B093E13379247336DDD846deF8624Ae8a9C", "classify", "query2.json","-y"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p = subprocess.Popen(["snet", "--print-traceback", "client", "call", "--agent-at", "0x7fE17B093E13379247336DDD846deF8624Ae8a9C",
+                          "classify", "query.json","-y"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     result, err = p.communicate()
     print(result)
@@ -54,10 +53,8 @@ def test_deployed_service(job_address):
     return preprocessed_results
 
 def test_call():
-    query = '{"image_type": "png", "image" : "' + str(image_64) + '"}'
-    with open('query2.json', 'wt') as f:
-        f.write(str(query))
-    p = subprocess.Popen(["snet", "client", "call", "--agent-at", "0x7fE17B093E13379247336DDD846deF8624Ae8a9C", "classify", "query2.json","-y"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p = subprocess.Popen(["snet", "client", "call", "--agent-at", "0x7fE17B093E13379247336DDD846deF8624Ae8a9C", "classify",
+                          "query.json","-y"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     result, err = p.communicate()
     print(result)
@@ -69,10 +66,9 @@ def test_call():
     return preprocessed_results
 
 def test_mpe_call():
-    query = '{"image_type": "png", "image" : "' + str(image_64) + '"}'
-    with open('query2.json', 'wt') as f:
-        f.write(str(query))
-    p = subprocess.Popen(["snet", "mpe-client", "call_server", "0x38506005d6b25386aac998448ae5eb48f87f4277", "0","10","34.216.72.29:6205", "EmotionRecognition", "classify", "query2.json"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p = subprocess.Popen(["snet", "mpe-client", "call_server", "0x38506005d6b25386aac998448ae5eb48f87f4277", "0", "10",
+                          "34.216.72.29:6205", "EmotionRecognition", "classify", "query.json"], stdin=subprocess.PIPE,
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     result, err = p.communicate()
     print(result)
     results = str(result)
@@ -97,6 +93,7 @@ parser.add_argument("--test_with_job", help="given a job test the service for ac
 parser.add_argument("--test", help="given a job test the service for action")
 args = parser.parse_args(sys.argv[1:])
 
+load_image()
 if args.test_grpc is not None:
     test_grpc_call(args.test_grpc)
 

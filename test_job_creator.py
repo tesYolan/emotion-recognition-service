@@ -5,9 +5,10 @@ import time
 import yaml
 
 
-job_addresses = []
+job_address = []
+service_address = "0x7fE17B093E13379247336DDD846deF8624Ae8a9C"
 for i in range(1000):
-    p = subprocess.Popen(["snet", "agent", "--at", "0x7fE17B093E13379247336DDD846deF8624Ae8a9C", "create-jobs","--number", "1", "--max-price", "10000000", "--funded", "--signed", "-y"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    p = subprocess.Popen(["snet", "agent", "--at", service_address, "create-jobs","--number", "1", "--max-price", "10000000", "--funded", "--signed", "-y"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     contract, err = p.communicate()
     try:
         job_address = yaml.load(contract)['jobs']

@@ -17,18 +17,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libxext6 \ 
         libxrender-dev
 
-COPY requirements-docker-gpu.txt /tmp
+COPY requirements.txt /tmp
 
 WORKDIR /tmp
 
 RUN curl https://bootstrap.pypa.io/get-pip.py | python3.6
-RUN python3.6 -m pip install -r requirements-docker-gpu.txt
+RUN python3.6 -m pip install -r requirements.txt
 
 COPY . /emotion-recognition-service
 
 WORKDIR /emotion-recognition-service
 
-# EXPOSES the port where jsonrpc is being heard.
 EXPOSE 8001
 EXPOSE 6205
 
