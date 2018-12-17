@@ -2,7 +2,7 @@ name: emotion-recogntion-snet-agent-gpu
 dependencies:
     - Keras==2.1.6
     - numpy==1.14.3
-    - protobuf==3.5.2
+    - protobuf
     - ptyprocess==0.5.2
     - Pygments==2.2.0
     - pyparsing==2.2.0
