@@ -11,3 +11,8 @@ jobs:
       - run:
           - name: Query Image
           - command: python3.6 test_rpc_call.py --test_grpc 8001
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
