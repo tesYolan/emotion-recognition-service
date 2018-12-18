@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: tesyolan/emotion-recognition-service:latest
+    steps:
+      - checkout
+      - run:
+          - name: Start command
+          - command: python3.6 script.py
+      - run:
+          - name: Query Image
+          - command: python3.6 test_rpc_call.py --test_grpc 8001

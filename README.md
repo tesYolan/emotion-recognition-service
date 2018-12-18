@@ -36,6 +36,18 @@ You can also build an image which has only the CPU dependecies to evaluate the m
 ```bash
 docker build --file Dockerfile . -t singnet:emopy-cpu
 ```
+
+#### How to Use the docker image
+We have two ports exposed in our configuraiton for both containers: 6205 and 8001 for the snet-daemon and grpc endpoint. 
+To run with grpc endpoint available one can call: 
+```bash
+# This starts the grpc endpoint alone.
+docker run -it --rm -P 8001:8001 emotion-recongition:latest python3.6 script.py
+
+# To run with the daemon only exposed. We have a command at the end of the Dockerfile to execute it. 
+docker run -it --rm -P 6205:6205 emotion-recongition:latest 
+
+```
 ## How to preprocess datasets
 This proejct uses [CK+ dataset](http://www.consortium.ri.cmu.edu/ckagree/) and  [Kaggle fer2013 dataset](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data).  
 The dataset should be saved inside single directory which contains ```train``` and ```test``` folders.
