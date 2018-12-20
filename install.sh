@@ -22,6 +22,6 @@ else
 	echo "Folder seems to exist"
 fi
 
-python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. service_spec/EmotionService.proto
+python3.6 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. service_spec/EmotionService.proto
 
-python get_models.py
+python3.6 get_models.py

@@ -6,7 +6,13 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Start Test
+          name: Install Requests
+          command: python3.6 -m pip install requests
+      - run:
+          name: Get Models
+          command: ./install.sh
+      - run: 
+          name: Run Tests
           command: python3.6 -m unittest test_rpc_call.TestSuiteGrpc
 workflows:
   version: 2
