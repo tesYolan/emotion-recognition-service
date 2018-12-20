@@ -55,6 +55,7 @@ class EmotionRecognitionServicer(EmotionRecognitionServicer):
         response.predictions[:] = emotions
 
         return response
+
     def _classify(self, image):
         import tensorflow as tf
         from keras import backend as K
@@ -79,18 +80,22 @@ class EmotionRecognitionServicer(EmotionRecognitionServicer):
         sess.close()
         return bounding_boxes, emotions
 
-def serve():
+
+def create_server(port=8001):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
     add_EmotionRecognitionServicer_to_server(EmotionRecognitionServicer(), server)
-    server.add_insecure_port('[::]:8001')
+    server.add_insecure_port('[::]:' + str(port))
+    return server
+
+
+if __name__ == '__main__':
+    server = create_server()
     server.start()
     _ONE_DAY = 60*60*24
-    try: 
+    try:
         while True:
             time.sleep(_ONE_DAY)
     except KeyboardInterrupt:
         server.stop(0)
 
-if __name__ == '__main__':
-    serve()
