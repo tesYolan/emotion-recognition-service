@@ -123,9 +123,13 @@ python test_rpc_call.py
 ```
 ### Accessing on Daap
 Go to http://alpha.singularitynet.io/ to create a job
+
 #### TODO
 * Better data responses to queries. As it stands we just serialize the data as string. But it's better to utilize grpcs to have consistent message format to communicate with other services or just for single user. 
-* Persistant hosting to make it work always
+
+# Authors
+- Mitiku Yohannes - Author - [SingularityNet.io](https://singularitynet.io)
+- Tesfa Yohannes - Maintainer - [SingularityNet.io](https://singularitynet.io)
 # LICENSE
 MIT License
 
