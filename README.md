@@ -1,3 +1,6 @@
+![singnetlogo](docs/assets/singnet-logo.jpg?raw=true 'SingularityNET')
+
+[![CircleCI](https://circleci.com/gh/tesYolan/emotion-recognition-service/tree/master.svg?style=svg)](https://circleci.com/gh/tesYolan/emotion-recognition-service/tree/master)
 # Emotion recognition from face features
 This project is aimed to train model that detects emotion from face image.
 ## Install prerequisites
