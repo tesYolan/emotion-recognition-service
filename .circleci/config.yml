@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: tesyolan/emotion-recognition-service:latest
+    steps:
+      - checkout
+      - run:
+          name: Install Requests
+          command: python3.6 -m pip install requests
+      - run:
+          name: Get Models
+          command: ./install.sh
+      - run: 
+          name: Run Tests
+          command: python3.6 -m unittest test_rpc_call.TestSuiteGrpc
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build

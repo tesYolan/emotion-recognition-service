@@ -8,7 +8,7 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser(prog="run-snet-service")
-    parser.add_argument("--daemon-config-path", help="Path to daemon configuration file", required=False)
+    parser.add_argument("--daemon-config-path", help="Path to daemon configuration file", required=True)
     args = parser.parse_args(sys.argv[1:])
 
     def handle_signal(signum, frame):
@@ -34,9 +34,9 @@ def main():
 
 
 def start_snetd(cwd, daemon_config_path=None):
-    cmd = ["snetd"]
+    cmd = ["./snetd-linux-amd64"]
     if daemon_config_path is not None:
-        cmd.extend(["--config-path", daemon_config_path])
+        cmd.extend(["--config", daemon_config_path])
     return subprocess.Popen(cmd)
 
 
