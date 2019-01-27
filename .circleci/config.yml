@@ -29,6 +29,8 @@ jobs:
           name: Run Tests
           command: python3.6 -m unittest test_rpc_call.TestSuiteGrpc
   deploy:
+    machine:
+      enabled: true
     steps:
       - run:
           name: Deploy over SSH
