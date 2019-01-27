@@ -1,9 +1,5 @@
 import base64
-import random
-import os
 import tempfile
-import json
-from multiprocessing import Pool
 
 import grpc
 import time
@@ -21,7 +17,6 @@ class Args:
         self.json = 'models/models/model-ff.json'
         self.weights = 'models/models/model-ff.h5'
         self.model_input = 'image'
-        # TODO currenty we save, so this should be set this False for now
         self.snet = False
         self.gui = False
         self.path = ''
@@ -42,17 +37,14 @@ class EmotionRecognitionServicer(EmotionRecognitionServicer):
             raise InvalidParams("Image is required")
         if request.image_type is None:
             raise InvalidParams("Image type is required")
-        image = request.image
+
         binary_image = base64.b64decode(request.image)
-
         bounding_boxes, emotions = self._classify(binary_image)
-
         response = RecognizeResponse()
 
-        for d in bounding_boxes:
-            response.bounding_boxes.add(x=d.left(), y=d.top(), w=d.right() - d.left(), h=d.bottom() - d.top())
-        # values = [ dict(x=d.left(), y=d.top(), w=d.right() - d.left(), h=d.bottom() - d.top()) for d in bounding_boxes ]
-        response.predictions[:] = emotions
+        for d, e in zip(bounding_boxes, emotions):
+            response.faces.add(bounding_box=BoundingBox(x=d.left(), y=d.top(), w=d.right() - d.left(), h=d.bottom() - d.top()),
+                                  emotion=e)
 
         return response
 

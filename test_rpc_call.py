@@ -11,6 +11,7 @@ import difflib
 
 from service_spec.EmotionService_pb2_grpc import EmotionRecognitionStub
 from service_spec.EmotionService_pb2 import RecognizeResponse, BoundingBox, RecognizeRequest
+from google.protobuf.json_format import MessageToJson, MessageToDict
 
 
 class TestSuiteGrpc(unittest.TestCase):
@@ -22,48 +23,13 @@ class TestSuiteGrpc(unittest.TestCase):
         self.port = "8001"
         self.server = script.create_server(self.port)
         self.server.start()
-        self.result = ('predictions: "fear"\n'
-                      'predictions: "happy"\n'
-                      'predictions: "sad"\n'
-                      'predictions: "happy"\n'
-                      'predictions: "anger"\n'
-                      'predictions: "happy"\n'
-                      'bounding_boxes {\n'
-                      '  x: 572\n'
-                      '  y: 112\n'
-                      '  w: 104\n'
-                      '  h: 103\n'
-                      '}\n'
-                      'bounding_boxes {\n'
-                      '  x: 841\n'
-                      '  y: 161\n'
-                      '  w: 150\n'
-                      '  h: 150\n'
-                      '}\n'
-                      'bounding_boxes {\n'
-                      '  x: 365\n'
-                      '  y: 42\n'
-                      '  w: 104\n'
-                      '  h: 104\n'
-                      '}\n'
-                      'bounding_boxes {\n'
-                      '  x: 411\n'
-                      '  y: 286\n'
-                      '  w: 124\n'
-                      '  h: 125\n'
-                      '}\n'
-                      'bounding_boxes {\n'
-                      '  x: 742\n'
-                      '  y: 93\n'
-                      '  w: 125\n'
-                      '  h: 124\n'
-                      '}\n'
-                      'bounding_boxes {\n'
-                      '  x: 145\n'
-                      '  y: 112\n'
-                      '  w: 149\n'
-                      '  h: 149\n'
-                      '}\n')
+
+        self.result = {'faces': [{'emotion': 'fear', 'boundingBox': {'x': 572, 'y': 112, 'w': 104, 'h': 103}},
+                                 {'emotion': 'happy', 'boundingBox': {'x': 841, 'y': 161, 'w': 150, 'h': 150}},
+                                 {'emotion': 'sad', 'boundingBox': {'x': 365, 'y': 42, 'w': 104, 'h': 104}},
+                                 {'emotion': 'happy', 'boundingBox': {'x': 411, 'y': 286, 'w': 124, 'h': 125}},
+                                 {'emotion': 'anger', 'boundingBox': {'x': 742, 'y': 93, 'w': 125, 'h': 124}},
+                                 {'emotion': 'happy', 'boundingBox': {'x': 145, 'y': 112, 'w': 149, 'h': 149}}]}
 
     def load_image(self):
         query = '{"image_type": "png", "image" : "' + str(self.image_64) + '"}'
@@ -75,7 +41,7 @@ class TestSuiteGrpc(unittest.TestCase):
             stub = EmotionRecognitionStub(channel)
             request = RecognizeRequest(image_type='png', image=self.image_64)
             feature = stub.classify(request)
-            self.assertMultiLineEqual(self.result, str(feature), "GRPC Funtioning smootly for provided image.")
+            self.assertMultiLineEqual(str(self.result), str(MessageToDict(feature)), "GRPC Funtioning smootly for provided image.")
 
     def tearDown(self):
         self.server.stop(0)
