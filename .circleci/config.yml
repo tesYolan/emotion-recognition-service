@@ -14,6 +14,39 @@ jobs:
       - run: 
           name: Run Tests
           command: python3.6 -m unittest test_rpc_call.TestSuiteGrpc
+  build_gpu:
+    docker:
+      - image: tesyolan/emotion-recognition-service:gpu-latest
+    steps:
+      - checkout
+      - run:
+          name: Install Requests
+          command: python3.6 -m pip install requests
+      - run:
+          name: Get Models
+          command: ./install.sh
+      - run:
+          name: Run Tests
+          command: python3.6 -m unittest test_rpc_call.TestSuiteGrpc
+  deploy:
+    steps:
+      - run:
+          name: Deploy over SSH
+          command: |
+            ssh $SSH_USER@$SERVER bash << EOF
+            if [ ! -d "emotion-recognition-service" ]; then
+              git clone https://github.com/tesyolan/emotion-recognition-service.git
+            else
+              git pull
+            fi
+
+            cd emotion-recognition-service
+            docker build -f Dockerfile.gpu -t singularitynet/emotion-recognition-service .
+            docker run --runtime=nvidia  -d --name emotion-recognition-service  -p 8545:8545 -p 6205:6205  -it \
+            singularitynet/emotion-recognition-service:latest     python3.6 run-snet-service.py --daemon-config-path snetd.json
+
+            EOF
+
 workflows:
   version: 2
   build_and_test:

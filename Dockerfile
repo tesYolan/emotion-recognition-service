@@ -28,6 +28,8 @@ COPY . /emotion-recognition-service
 
 WORKDIR /emotion-recognition-service
 
+RUN ./install.sh
+
 EXPOSE 8001
 EXPOSE 6205
 

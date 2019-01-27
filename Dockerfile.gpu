@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libxext6 \ 
         libxrender-dev
 
-COPY requirements-docker-gpu.txt /tmp
+COPY requirements-gpu.txt /tmp
 
 WORKDIR /tmp
 
@@ -27,6 +27,8 @@ RUN python3.6 -m pip install -r requirements-docker-gpu.txt
 COPY . /emotion-recognition-service
 
 WORKDIR /emotion-recognition-service
+
+RUN ./install.sh
 
 EXPOSE 8001
 EXPOSE 6205
