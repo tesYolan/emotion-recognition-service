@@ -6,8 +6,8 @@ snet_daemon_v=0.1.5
 if [ ! -d snetd-$snet_daemon_v ] ; then
 	echo "Downloading snetd-linux"
 	wget https://github.com/singnet/snet-daemon/releases/download/v$snet_daemon_v/snet-daemon-v$snet_daemon_v-linux-amd64.tar.gz
-	tar -xzf snetd-$snet_daemon_v-linux-amd64.tar.gz -C snetd-$snet_daemon_v
-	rm snetd-$snet_daemon_v-linux-amd64.tar.gz
+	tar -xzf snet-daemon-v$snet_daemon_v-linux-amd64.tar.gz
+	rm snet-daemon-v$snet_daemon_v-linux-amd64.tar.gz
 else
 	echo "Folder seems to exist"
 fi

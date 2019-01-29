@@ -22,7 +22,7 @@ COPY requirements-gpu.txt /tmp
 WORKDIR /tmp
 
 RUN curl https://bootstrap.pypa.io/get-pip.py | python3.6
-RUN python3.6 -m pip install -r requirements-docker-gpu.txt
+RUN python3.6 -m pip install -r requirements-gpu.txt
 
 COPY . /emotion-recognition-service
 

@@ -6,9 +6,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Requests
-          command: python3.6 -m pip install requests
-      - run:
           name: Get Models
           command: ./install.sh
       - run: 
