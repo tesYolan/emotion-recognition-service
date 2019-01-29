@@ -1,12 +1,31 @@
 {
-  "DAEMON_LISTENING_PORT": 8000,
-  "ETHEREUM_JSON_RPC_ENDPOINT": "https://kovan.infura.io",
-  "AGENT_CONTRACT_ADDRESS": "0xdeA207A65e33C320802e35226AeBdd9a021F1698",
-  "PASSTHROUGH_ENDPOINT": "http://127.0.0.1:8001",
-  "PASSTHROUGH_ENABLED": true,
-  "BLOCKCHAIN_ENABLED": true,
-  "LOG_LEVEL": 10,
-  "PRIVATE_KEY": "#PRIVATEKEY GOES HERE",
-  "HDWALLET_MNEMONIC": "",
-  "HDWALLET_INDEX": 0
+   "DAEMON_END_POINT": "http://34.216.72.29:6205",
+   "ETHEREUM_JSON_RPC_ENDPOINT": "https://kovan.infura.io",
+   "IPFS_END_POINT": "http://ipfs.singularitynet.io:80",
+   "REGISTRY_ADDRESS_KEY": "0xe331bf20044a5b24c1a744abc90c1fd711d2c08d",
+   "PASSTHROUGH_ENABLED": true,
+   "PASSTHROUGH_ENDPOINT": "http://localhost:7003",
+   "ORGANIZATION_ID": "snet",
+   "SERVICE_ID": "emotion-recognition-service",
+   "PAYMENT_CHANNEL_STORAGE_SERVER": {
+	    "id": "storage-kovan",
+	    "host": "127.0.0.1",
+	    "client_port": 2379,
+	    "peer_port": 2380,
+	    "token": "unique-token",
+	    "cluster": "storage-kovan=http://127.0.0.1:2380",
+	    "data_dir": "etcd/storage-data-dir-kovan.etcd",
+	    "enabled": true
+   },
+  "payment_channel_storage_client": {
+	    "connection_timeout": "5s",
+	    "request_timeout": "3s",
+	    "endpoints": ["http://127.0.0.1:2379"]
+  },
+   "LOG": {
+       "LEVEL": "debug",
+       "OUTPUT": {
+              "TYPE": "stdout"
+           }
+   }
 }
