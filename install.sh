@@ -7,6 +7,7 @@ if [ ! -d snetd-$snet_daemon_v ] ; then
 	echo "Downloading snetd-linux"
 	wget https://github.com/singnet/snet-daemon/releases/download/v$snet_daemon_v/snet-daemon-v$snet_daemon_v-linux-amd64.tar.gz
 	tar -xzf snet-daemon-v$snet_daemon_v-linux-amd64.tar.gz
+	ln snet-daemon-v$snet_daemon_v-linux-amd64/snetd snetd-linux-amd64
 	rm snet-daemon-v$snet_daemon_v-linux-amd64.tar.gz
 else
 	echo "Folder seems to exist"
