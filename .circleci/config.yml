@@ -36,10 +36,13 @@ jobs:
             if [ ! -d "emotion-recognition-service" ]; then
               git clone https://github.com/tesyolan/emotion-recognition-service.git
             else
+              cd emotion-recognition-service
               git pull
+              cd ..
             fi
 
             cd emotion-recognition-service
+            cp snet.config.example snetd.json
             docker build -f Dockerfile.gpu -t singularitynet/emotion-recognition-service .
             docker run --runtime=nvidia  -d --name emotion-recognition-service  -p 8545:8545 -p 6205:6205  -it \
             singularitynet/emotion-recognition-service:latest     python3.6 run-snet-service.py --daemon-config-path snetd.json
