@@ -1,23 +1,14 @@
 #!/bin/bash
 
-snet_daemon_v=0.1.3
+snet_daemon_v=0.1.5
 
 # apt install tar
-if [ ! -d snetd-$snet_daemon_v ] ; then
+if [ ! -d snet-daemon-v$snet_daemon_v ] ; then
 	echo "Downloading snetd-linux"
-	wget https://github.com/singnet/snet-daemon/releases/download/v$snet_daemon_v/snetd-$snet_daemon_v.tar.gz
-
-	y=`uname`
-	if [ $y == "Darwin" ]; then
-		echo "MacOS creates folder"
-		mkdir snetd-$snet_daemon_v
-	else
-		echo "Using linux, tar creates a folder by itself"
-	fi
-	tar -xzf snetd-$snet_daemon_v.tar.gz -C snetd-$snet_daemon_v
-
-	# May be should we define a cache.
-	rm snetd-$snet_daemon_v.tar.gz
+	wget https://github.com/singnet/snet-daemon/releases/download/v$snet_daemon_v/snet-daemon-v$snet_daemon_v-linux-amd64.tar.gz
+	tar -xzf snet-daemon-v$snet_daemon_v-linux-amd64.tar.gz
+	ln snet-daemon-v$snet_daemon_v-linux-amd64/snetd snetd-linux-amd64
+	rm snet-daemon-v$snet_daemon_v-linux-amd64.tar.gz
 else
 	echo "Folder seems to exist"
 fi

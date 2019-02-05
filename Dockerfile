@@ -28,9 +28,11 @@ COPY . /emotion-recognition-service
 
 WORKDIR /emotion-recognition-service
 
+RUN ./install.sh
+
 EXPOSE 8001
 EXPOSE 6205
 
 RUN python3.6 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. service_spec/EmotionService.proto
 
-CMD ['python3.6', 'run-snet-service.py', "--daemon-config", "snetd.json"]
+CMD ['python3.6', 'run-snet-service.py', "--daemon-config-path", "snetd.json"]

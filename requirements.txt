@@ -32,6 +32,7 @@ python-dateutil
 pytz
 PyWavelets
 PyYAML
+requests
 scikit-image
 scipy
 simplegeneric

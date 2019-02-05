@@ -11,12 +11,16 @@ message BoundingBox {
 	int32 h = 4;
 }
 
+message Face {
+   string emotion = 1;
+   BoundingBox bounding_box = 2;
+}
+
 message RecognizeRequest {
 	string image_type = 1; 
 	string image = 2; 
 }
 
 message RecognizeResponse {
-	repeated string predictions = 1; 
-	repeated BoundingBox bounding_boxes = 2; 
+    repeated Face faces = 1;
 }
