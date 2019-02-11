@@ -27,58 +27,86 @@ would change the test and handling on both the client and server side.
 ### Using the service on the platform
 
 The returned result has the following form: 
-```bash
-message RecognizeResponse {
-	repeated string predictions = 1; 
-	repeated BoundingBox bounding_boxes = 2; 
+```proto
+message BoundingBox {
+	int32 x = 1;
+	int32 y = 2;
+	int32 w = 3;
+	int32 h = 4;
+}
+
+message Face {
+   string emotion = 1;
+   BoundingBox bounding_box = 2;
 }
 ```
 
 An example result obtained after passing the [image](../../turtles.png)
 ```bash
-predictions: "fear"
-predictions: "happy"
-predictions: "sad"
-predictions: "happy"
-predictions: "anger"
-predictions: "happy"
-bounding_boxes {
-  x: 572
-  y: 112
-  w: 104
-  h: 103
+faces {
+  emotion: "fear"
+  bounding_box {
+    x: 572
+    y: 112
+    w: 104
+    h: 103
+  }
 }
-bounding_boxes {
-  x: 841
-  y: 161
-  w: 150
-  h: 150
+faces {
+  emotion: "happy"
+  bounding_box {
+    x: 841
+    y: 161
+    w: 150
+    h: 150
+  }
 }
-bounding_boxes {
-  x: 365
-  y: 42
-  w: 104
-  h: 104
+faces {
+  emotion: "sad"
+  bounding_box {
+    x: 365
+    y: 42
+    w: 104
+    h: 104
+  }
 }
-bounding_boxes {
-  x: 411
-  y: 286
-  w: 124
-  h: 125
+faces {
+  emotion: "happy"
+  bounding_box {
+    x: 411
+    y: 286
+    w: 124
+    h: 125
+  }
 }
-bounding_boxes {
-  x: 742
-  y: 93
-  w: 125
-  h: 124
+faces {
+  emotion: "anger"
+  bounding_box {
+    x: 742
+    y: 93
+    w: 125
+    h: 124
+  }
 }
-bounding_boxes {
-  x: 145
-  y: 112
-  w: 149
-  h: 149
+faces {
+  emotion: "happy"
+  bounding_box {
+    x: 145
+    y: 112
+    w: 149
+    h: 149
+  }
 }
+```
 
+Python converted to dict.
+```python
+{'faces': [{'emotion': 'fear', 'boundingBox': {'x': 572, 'y': 112, 'w': 104, 'h': 103}},
+                                 {'emotion': 'happy', 'boundingBox': {'x': 841, 'y': 161, 'w': 150, 'h': 150}},
+                                 {'emotion': 'sad', 'boundingBox': {'x': 365, 'y': 42, 'w': 104, 'h': 104}},
+                                 {'emotion': 'happy', 'boundingBox': {'x': 411, 'y': 286, 'w': 124, 'h': 125}},
+                                 {'emotion': 'anger', 'boundingBox': {'x': 742, 'y': 93, 'w': 125, 'h': 124}},
+                                 {'emotion': 'happy', 'boundingBox': {'x': 145, 'y': 112, 'w': 149, 'h': 149}}]}
 ```
 
 This form isn't expected to change as the input format. 
