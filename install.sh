@@ -1,6 +1,6 @@
 #!/bin/bash
 
-snet_daemon_v=0.1.5
+snet_daemon_v=0.1.6
 
 # apt install tar
 if [ ! -d snet-daemon-v$snet_daemon_v ] ; then
