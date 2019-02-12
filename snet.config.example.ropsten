@@ -1,26 +1,26 @@
 {
-   "DAEMON_END_POINT": "http://34.216.72.29:6205",
-   "ETHEREUM_JSON_RPC_ENDPOINT": "https://kovan.infura.io",
+   "DAEMON_END_POINT": "http://34.216.72.29:6305",
+   "ETHEREUM_JSON_RPC_ENDPOINT": "https://ropsten.infura.io",
    "IPFS_END_POINT": "http://ipfs.singularitynet.io:80",
-   "REGISTRY_ADDRESS_KEY": "0xe331bf20044a5b24c1a744abc90c1fd711d2c08d",
+   "REGISTRY_ADDRESS_KEY": "0x5156fde2ca71da4398f8c76763c41bc9633875e4",
    "PASSTHROUGH_ENABLED": true,
    "PASSTHROUGH_ENDPOINT": "http://localhost:7003",
    "ORGANIZATION_ID": "snet",
    "SERVICE_ID": "emotion-recognition-service",
    "PAYMENT_CHANNEL_STORAGE_SERVER": {
-	    "id": "storage-kovan",
+	    "id": "storage-ropsten",
 	    "host": "127.0.0.1",
-	    "client_port": 2379,
-	    "peer_port": 2380,
+	    "client_port": 2381,
+	    "peer_port": 2382,
 	    "token": "unique-token",
-	    "cluster": "storage-kovan=http://127.0.0.1:2380",
-	    "data_dir": "etcd/storage-data-dir-kovan.etcd",
+	    "cluster": "storage-ropsten=http://127.0.0.1:2382",
+	    "data_dir": "etcd/storage-data-dir-ropsten.etcd",
 	    "enabled": true
    },
   "payment_channel_storage_client": {
 	    "connection_timeout": "5s",
 	    "request_timeout": "3s",
-	    "endpoints": ["http://127.0.0.1:2379"]
+	    "endpoints": ["http://127.0.0.1:2381"]
   },
    "LOG": {
        "LEVEL": "debug",

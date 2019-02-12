@@ -102,11 +102,11 @@ faces {
 Python converted to dict.
 ```python
 {'faces': [{'emotion': 'fear', 'boundingBox': {'x': 572, 'y': 112, 'w': 104, 'h': 103}},
-                                 {'emotion': 'happy', 'boundingBox': {'x': 841, 'y': 161, 'w': 150, 'h': 150}},
-                                 {'emotion': 'sad', 'boundingBox': {'x': 365, 'y': 42, 'w': 104, 'h': 104}},
-                                 {'emotion': 'happy', 'boundingBox': {'x': 411, 'y': 286, 'w': 124, 'h': 125}},
-                                 {'emotion': 'anger', 'boundingBox': {'x': 742, 'y': 93, 'w': 125, 'h': 124}},
-                                 {'emotion': 'happy', 'boundingBox': {'x': 145, 'y': 112, 'w': 149, 'h': 149}}]}
+           {'emotion': 'happy', 'boundingBox': {'x': 841, 'y': 161, 'w': 150, 'h': 150}},
+           {'emotion': 'sad', 'boundingBox': {'x': 365, 'y': 42, 'w': 104, 'h': 104}},
+           {'emotion': 'happy', 'boundingBox': {'x': 411, 'y': 286, 'w': 124, 'h': 125}},
+           {'emotion': 'anger', 'boundingBox': {'x': 742, 'y': 93, 'w': 125, 'h': 124}},
+           {'emotion': 'happy', 'boundingBox': {'x': 145, 'y': 112, 'w': 149, 'h': 149}}]}
 ```
 
 This form isn't expected to change as the input format. 

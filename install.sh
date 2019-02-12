@@ -16,3 +16,7 @@ fi
 python3.6 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. service_spec/EmotionService.proto
 
 python3.6 get_models.py
+
+# Here may be add a script that does check there is not files that are added.
+cp snet.config.example.kovan snet.config.example.kovan.json
+cp snet.config.example.ropsten snet.config.example.ropsten.json
