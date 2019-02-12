@@ -4,7 +4,7 @@
    "IPFS_END_POINT": "http://ipfs.singularitynet.io:80",
    "REGISTRY_ADDRESS_KEY": "0x5156fde2ca71da4398f8c76763c41bc9633875e4",
    "PASSTHROUGH_ENABLED": true,
-   "PASSTHROUGH_ENDPOINT": "http://localhost:7003",
+   "PASSTHROUGH_ENDPOINT": "http://localhost:8001",
    "ORGANIZATION_ID": "snet",
    "SERVICE_ID": "emotion-recognition-service",
    "PAYMENT_CHANNEL_STORAGE_SERVER": {

@@ -12,14 +12,14 @@ def main():
     parser.add_argument("--daemon-config-path-ropsten", help="Path to daemon configuration file for ropsten",
                         required=True)
     args = parser.parse_args(sys.argv[1:])
-    daemons = ['kovan', 'ropsten']
+    daemons = {'kovan':args.daemon_config_path_kovan, 'ropsten':args.daemon_config_path_ropsten}
     snetd_p = []
 
     def handle_signal(signum, frame):
-        for i,_ in daemons:
+        for i,_ in enumerate(daemons.keys()):
             snetd_p[i].send_signal(signum)
         service_p.send_signal(signum)
-        for i,_ in daemons:
+        for i,_ in enumerate(daemons.keys()):
             snetd_p[i].wait()
         service_p.wait()
         exit(0)
@@ -28,14 +28,14 @@ def main():
     signal.signal(signal.SIGINT, handle_signal)
 
     root_path = pathlib.Path(__file__).absolute().parent.parent
-    for daemon in daemons:
-        snetd_p.append(start_snetd(root_path, args.daemon_config_path + '_' + str(daemon)))
+    for daemon in daemons.keys():
+        snetd_p.append(start_snetd(root_path, daemons[daemon]))
     service_p = start_service(root_path)
 
     while True:
-        for i, daemon in enumerate(daemons):
+        for i, daemon in enumerate(daemons.keys()):
             if snetd_p[i].poll() is not None:
-                snetd_p[i] = start_snetd(root_path, args.daemon_config_path + '_' + str(daemon))
+                snetd_p[i] = start_snetd(root_path, daemons[daemon])
         if service_p.poll() is not None:
             service_p = start_service(root_path)
         time.sleep(5)
