@@ -34,9 +34,10 @@ class Model:
 class EmotionRecognitionServicer(EmotionRecognitionServicer):
     def classify(self, request, context):
         if request.image is None:
-            raise InvalidParams("Image is required")
+            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
+            context.set_details("Image is required")
         if request.image_type is None:
-            raise InvalidParams("Image type is required")
+            pass
 
         binary_image = base64.b64decode(request.image)
         bounding_boxes, emotions = self._classify(binary_image)
