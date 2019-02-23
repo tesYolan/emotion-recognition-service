@@ -36,6 +36,13 @@ class EmotionRecognitionServicer(EmotionRecognitionServicer):
         if request.image is None:
             context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
             context.set_details("Image is required")
+            return RecognizeResponse
+        if request.image == '':
+            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
+            context.set_details("Image is empty")
+            return RecognizeResponse
+
+        # TODO additional checks for valid magic parameters for the input image is required.
         if request.image_type is None:
             pass
 
