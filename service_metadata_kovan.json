@@ -1,0 +1,30 @@
+{
+    "version": 1,
+    "display_name": "emotion-recognition-service",
+    "encoding": "proto",
+    "service_type": "grpc",
+    "payment_expiration_threshold": 40320,
+    "model_ipfs_hash": "QmVM1gyvyg873rhQXW78duQjk2qrYcPUEJzfsZVpfSmnGf",
+    "mpe_address": "0x39f31Ac7B393fE2C6660b95b878FEB16eA8f3156",
+    "pricing": {
+        "price_model": "fixed_price",
+        "price_in_cogs": 1
+    },
+    "groups": [
+        {
+            "group_name": "default_group",
+            "group_id": "lffIh9GSOw9WFu7DNbaioLBwIrpuiLFFn0QpQ7YTqpY=",
+            "payment_address": "0xd708A068F606893120eA34eECe8a2f7448Fca764"
+        }
+    ],
+    "endpoints": [
+        {
+            "group_name": "default_group",
+            "endpoint": "https://services-1.snet.sh:6205"
+        }
+    ],
+    "service_description": {
+        "url": "https://tesyolan.github.io/emotion-recognition-service",
+        "description": "A service that uses deep neural networks and landmark information to detect human emotion expressions after detecting faces in the given image"
+    }
+}
