@@ -12,17 +12,17 @@
    "PAYMENT_CHANNEL_STORAGE_SERVER": {
 	    "id": "storage-mainnet",
 	    "host": "127.0.0.1",
-	    "client_port": 2379,
-	    "peer_port": 2380,
+	    "client_port": 2383,
+	    "peer_port": 2384,
 	    "token": "unique-token",
-	    "cluster": "storage-mainnet=http://127.0.0.1:2380",
+	    "cluster": "storage-mainnet=http://127.0.0.1:2384",
 	    "data_dir": "etcd/storage-data-dir-mainnet.etcd",
 	    "enabled": true
    },
   "payment_channel_storage_client": {
 	    "connection_timeout": "5s",
 	    "request_timeout": "3s",
-	    "endpoints": ["http://127.0.0.1:2379"]
+	    "endpoints": ["http://127.0.0.1:2383"]
   },
    "LOG": {
        "LEVEL": "debug",
