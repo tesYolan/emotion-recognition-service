@@ -32,6 +32,7 @@ RUN ./install.sh
 
 EXPOSE 6405
 EXPOSE 6305
+EXPOSE 6205
 
 RUN python3.6 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. service_spec/EmotionService.proto
 

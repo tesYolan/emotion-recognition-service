@@ -1,5 +1,5 @@
 {
-   "DAEMON_END_POINT": "0.0.0.0:6405",
+   "DAEMON_END_POINT": "0.0.0.0:6205",
    "IPFS_END_POINT": "http://ipfs.singularitynet.io:80",
    "PASSTHROUGH_ENABLED": true,
    "PASSTHROUGH_ENDPOINT": "http://localhost:8001",
