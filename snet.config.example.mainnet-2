@@ -13,7 +13,7 @@
    "free_call_signer_address":"0x3Bb9b2499c283cec176e7C707Ecb495B7a961ebf",
    "blockchain_network_selected": "main",
    "metering_end_point": "https://mainnet-marketplace.singularitynet.io/metering",
-   "pvt_key_for_metering":    "12d4f860df6466c2f0b5619176134b17a26c90989d1bf2d4a110d42028422cd6",
+   "pvt_key_for_metering": "a9d479cad7ae6dbe830d8c68ea2ac5bf0f386408c0e92ffd49bd2e284734182a",
 
    "LOG": {
        "LEVEL": "debug",
